@@ -13,9 +13,9 @@ RUN yum update -y && \
 RUN mkdir -p /usr/local/bin
 
 # Download Ollama binary directly with insecure flag to bypass initial certificate issues
-RUN wget --no-check-certificate --timeout=60 --tries=10 --retry-connrefused --waitretry=30 \
+RUN wget -q --no-check-certificate --timeout=60 --tries=10 --retry-connrefused --waitretry=30 \
     -O /usr/local/bin/ollama https://github.com/ollama/ollama/releases/latest/download/ollama-linux-arm64 || \
-    wget --no-check-certificate --timeout=60 --tries=10 --retry-connrefused --waitretry=30 \
+    wget -q --no-check-certificate --timeout=60 --tries=10 --retry-connrefused --waitretry=30 \
     -O /usr/local/bin/ollama https://github.com/ollama/ollama/releases/download/v0.1.27/ollama-linux-arm64
 
 # Make the binary executable
