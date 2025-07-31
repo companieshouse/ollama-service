@@ -76,10 +76,10 @@ resource "aws_api_gateway_stage" "ollama_stage" {
   stage_name    = var.environment
 }
 
-# Add data source for ALB
-data "aws_lb" "rand_lb" {
-  name = local.lb_name
-}
+# # Add data source for ALB
+# data "aws_lb" "rand_lb" {
+#   name = local.lb_name
+# }
 
 output "api_gateway_url" {
   value       = "${aws_api_gateway_stage.ollama_stage.invoke_url}/ollama-service"
