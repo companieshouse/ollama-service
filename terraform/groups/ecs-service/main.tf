@@ -110,7 +110,7 @@ module "ecs-service" {
 
 # ECS Service Security Group
 resource "aws_security_group" "ecs_sg" {
-  name        = "ecs-sg"
+  name        = "${local.service_name}-${var.environment}-ecs-sg"
   description = "Security group for ECS service"
   vpc_id      = data.aws_vpc.vpc.id
 }
