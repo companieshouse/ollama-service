@@ -22,20 +22,8 @@ variable "service" {
   default     = "ollama-service"
 }
 
-
 variable release_bucket_name {
   type        = string
-}
-
-
-variable pdf_api_endpoint {
-    type        = string
-    description = "The API endpoint for the PDF redaction service"
-}
-
-variable pdf_api_path {
-  type        = string
-  description = "The API path for the PDF redaction service"
 }
 
 # ------------------------------------------------------------------------------
