@@ -45,7 +45,7 @@ module "secrets" {
 
   name_prefix = "${local.service_name}-${var.environment}"
   environment = var.environment
-  # kms_key_id  = data.aws_kms_key.kms_key.id
+  kms_key_id  = data.aws_kms_key.kms_key.id
   secrets     = nonsensitive(local.stack_secrets)
 }
 

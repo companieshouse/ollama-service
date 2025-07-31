@@ -2,9 +2,9 @@ data "vault_generic_secret" "stack_secrets" {
   path = local.stack_secrets_path
 }
 
-# data "aws_kms_key" "kms_key" {
-#   key_id = local.kms_alias
-# }
+data "aws_kms_key" "kms_key" {
+   key_id = local.kms_alias
+}
 
 # data "vault_generic_secret" "service_secrets" {
 #   path = local.service_secrets_path
