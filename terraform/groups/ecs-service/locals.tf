@@ -4,7 +4,7 @@ locals {
   name_prefix                 = "${local.stack_name}-${var.environment}"
   global_prefix               = "global-${var.environment}"
   service_name                = "ollama-service"
-  lambda_function_name        = "${local.service_name}-${var.environment}"
+  # lambda_function_name        = "${local.service_name}-${var.environment}"
 
   stack_secrets_path          = "applications/${var.aws_profile}/${var.environment}/${local.stack_name}-stack"
 
@@ -19,7 +19,7 @@ locals {
   vpc_name                    = local.stack_secrets["vpc_name"]
   application_subnet_ids      = data.aws_subnets.application.ids
   application_subnet_pattern  = local.stack_secrets["application_subnet_pattern"]
-  public_subnet_pattern       = local.stack_secrets["public_subnet_pattern"]
+  # public_subnet_pattern       = local.stack_secrets["public_subnet_pattern"]
 
   # Environment Files
   use_set_environment_files   = var.use_set_environment_files
