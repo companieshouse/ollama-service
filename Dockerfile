@@ -1,4 +1,4 @@
-FROM ollama/ollama:latest
+FROM ollama/ollama:0.1.27
 
 # Health check to ensure container is running properly
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
@@ -8,8 +8,7 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
 EXPOSE 11434
 
 # Use the default entrypoint from the ollama image
-ENTRYPOINT ["/bin/ollama"]
-CMD ["serve"]
+# Use the default entrypoint from the ollama image
 
 #FROM public.ecr.aws/amazoncorretto/amazoncorretto:21
 #
