@@ -10,7 +10,7 @@ locals {
 
   container_port              = "11434" # default node port required here until prod docker container is built allowing port change via env var
   docker_repo                 = "ollama-service"
-  # kms_alias                   = "alias/${var.aws_profile}/environment-services-kms"
+  kms_alias                   = "alias/${var.aws_profile}/environment-services-kms"
   lb_name                     = "alb-randd-rand"
   lb_listener_rule_priority   = 23
   lb_listener_paths           = ["/ollama-service","/ollama-service/*"]
