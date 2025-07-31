@@ -2,8 +2,8 @@ FROM public.ecr.aws/amazoncorretto/amazoncorretto:21
 
 # Install dependencies and CA certificates
 RUN yum update -y && \
-#   yum install -y tar gzip wget ca-certificates openssl && \
-    yum install -y tar gzip wget && \
+#   yum install -y tar-2.* gzip-1.* wget-1.* ca-certificates-* openssl-1.* && \
+    yum install -y tar-2.* gzip-1.* wget-1.* && \
     yum clean all
 
 # Update CA certificates
@@ -13,10 +13,10 @@ RUN yum update -y && \
 RUN mkdir -p /usr/local/bin
 
 # Download Ollama binary directly with insecure flag to bypass initial certificate issues
-RUN wget --no-verbose --no-check-certificate --timeout=60 --tries=10 --retry-connrefused --waitretry=30 \
-    -quiet -O /usr/local/bin/ollama https://github.com/ollama/ollama/releases/latest/download/ollama-linux-arm64 || \
-    wget --no-verbose --no-check-certificate --timeout=60 --tries=10 --retry-connrefused --waitretry=30 \
-    -quiet -O /usr/local/bin/ollama https://github.com/ollama/ollama/releases/download/v0.1.27/ollama-linux-arm64
+RUN wget --no-verbose --progress=dot:giga --no-check-certificate --timeout=60 --tries=10 --retry-connrefused --waitretry=30 \
+    -O /usr/local/bin/ollama https://github.com/ollama/ollama/releases/latest/download/ollama-linux-arm64 || \
+    wget --no-verbose --progress=dot:giga --no-check-certificate --timeout=60 --tries=10 --retry-connrefused --waitretry=30 \
+    -O /usr/local/bin/ollama https://github.com/ollama/ollama/releases/download/v0.1.27/ollama-linux-arm64
 
 # Make the binary executable
 RUN chmod +x /usr/local/bin/ollama
