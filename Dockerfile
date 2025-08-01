@@ -8,7 +8,7 @@ ENV OLLAMA_MODELS=/data/ollama
 ENV HOME=/data
 
 # Install curl for healthcheck
-RUN apt-get update && apt-get install -y --no-install-recommends curl=7.74.0-1.3+deb11u10 && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
 
 # Start Ollama server in background, pull the Llama model, then stop the server
 RUN nohup sh -c "/bin/ollama serve &" && \
