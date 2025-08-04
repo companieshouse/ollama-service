@@ -6,6 +6,7 @@ RUN mkdir -p /data/ollama && chmod 777 /data/ollama
 # Set environment variable to use the writable directory
 ENV OLLAMA_MODELS=/data/ollama
 ENV HOME=/data
+ENV OLLAMA_HOST=0.0.0.0
 
 # Install curl for healthcheck
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
@@ -26,7 +27,7 @@ EXPOSE 11434
 
 # Use the default entrypoint from the ollama image with the serve command
 # Using full path to ollama binary
-CMD ["/usr/bin/ollama", "serve"]
+#CMD ["/usr/bin/ollama", "serve"]
 
 
 #FROM public.ecr.aws/amazoncorretto/amazoncorretto:21
