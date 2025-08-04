@@ -53,7 +53,7 @@ resource "aws_api_gateway_integration" "health_integration" {
   http_method             = aws_api_gateway_method.health_method.http_method
   integration_http_method = "GET"
   type                    = "HTTP_PROXY"
-  uri                     = "http://${data.aws_lb.rand_lb.dns_name}/ollama-service/api/healthcheck"
+  uri                     = "http://${data.aws_lb.rand_lb.dns_name}/ollama-service/api/health"
 }
 
 resource "aws_api_gateway_deployment" "ollama_deployment" {
