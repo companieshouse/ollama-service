@@ -11,9 +11,10 @@ ENV HOME=/data
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
 
 # Start Ollama server in background, pull the Llama model, then stop the server
-RUN nohup sh -c "ollama serve &" && \
+# Using full path to ollama binary to avoid command not found errors
+RUN nohup sh -c "/usr/bin/ollama serve &" && \
     sleep 10 && \
-    ollama pull llama2 && \
+    /usr/bin/ollama pull llama2 && \
     pkill -f "ollama"
 
 # Health check to ensure container is running properly
@@ -24,7 +25,8 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
 EXPOSE 11434
 
 # Use the default entrypoint from the ollama image with the serve command
-CMD ["ollama", "serve"]
+# Using full path to ollama binary
+CMD ["/usr/bin/ollama", "serve"]
 
 
 #FROM public.ecr.aws/amazoncorretto/amazoncorretto:21
