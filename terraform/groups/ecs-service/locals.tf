@@ -11,7 +11,7 @@ locals {
   docker_repo                 = "ollama-service"
   kms_alias                   = "alias/${var.aws_profile}/environment-services-kms"
   lb_name                     = "alb-randd-rand"
-  lb_listener_rule_priority   = 23
+  lb_listener_rule_priority   = 1000 # Set the priority to a high value, so this service has a lower priority compared to other services
   # lb_listener_paths           = ["/ollama-service","/ollama-service/*"]
   # healthcheck_path            = "/ollama-service/api/health" #healthcheck
   lb_listener_paths           = ["/","/*"]
