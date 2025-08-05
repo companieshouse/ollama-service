@@ -15,7 +15,7 @@ locals {
   # lb_listener_paths           = ["/ollama-service","/ollama-service/*"]
   # healthcheck_path            = "/ollama-service/api/health" #healthcheck
   lb_listener_paths           = ["/","/*"]
-  healthcheck_path            = "/api/health" #healthcheck
+  healthcheck_path            = "/api/list" #healthcheck
   healthcheck_matcher         = "200"
   vpc_name                    = local.stack_secrets["vpc_name"]
   application_subnet_ids      = data.aws_subnets.application.ids
