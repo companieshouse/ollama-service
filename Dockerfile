@@ -18,9 +18,10 @@ RUN nohup sh -c "/usr/bin/ollama serve &" && \
     /usr/bin/ollama pull llama2 && \
     pkill -f "ollama"
 
+# Perform healthcheck from container's namespace rather than here \
 # Health check to ensure container is running properly
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:11434/api/health || exit 1
+#HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+#  CMD curl -f http://localhost:11434/api/health || exit 1
 
 # Expose the Ollama API port
 EXPOSE 11434
