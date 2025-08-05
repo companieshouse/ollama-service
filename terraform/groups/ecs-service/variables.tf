@@ -50,7 +50,7 @@ variable "required_cpus" {
 variable "required_memory" {
   type        = number
   description = "The required memory for this service"
-  default     = 1024 # defaulted low for node service in dev environments, override for production
+  default     = 4096 # minimum recommended for running Ollama models
 }
 
 variable "max_task_count" {
