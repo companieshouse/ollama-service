@@ -13,9 +13,9 @@ locals {
   lb_name                     = "alb-randd-rand"
   lb_listener_rule_priority   = 1000 # Set the priority to a high value, so this service has a lower priority compared to other services
   # lb_listener_paths           = ["/ollama-service","/ollama-service/*"]
-  # healthcheck_path            = "/ollama-service/api/health" #healthcheck
+  # healthcheck_path            = "/ollama-service/api/version" #healthcheck
   lb_listener_paths           = ["/","/*"]
-  healthcheck_path            = "/api/version" #healthcheck
+  healthcheck_path            = "/" #healthcheck
   healthcheck_matcher         = "200"
   vpc_name                    = local.stack_secrets["vpc_name"]
   application_subnet_ids      = data.aws_subnets.application.ids
