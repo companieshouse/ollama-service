@@ -3,6 +3,13 @@ resource "aws_api_gateway_rest_api" "ollama_api" {
   description = "API Gateway for ${local.service_name}"
 }
 
+# VPC Link for internal ALB connectivity
+resource "aws_api_gateway_vpc_link" "ollama_vpc_link" {
+  name        = "${local.service_name}-${var.environment}-vpc-link"
+  description = "VPC Link for ${local.service_name}"
+  target_arns = [data.aws_lb.rand_lb.arn]
+}
+
 resource "aws_api_gateway_resource" "ollama_resource" {
   rest_api_id = aws_api_gateway_rest_api.ollama_api.id
   parent_id   = aws_api_gateway_rest_api.ollama_api.root_resource_id
@@ -32,6 +39,8 @@ resource "aws_api_gateway_integration" "ollama_integration" {
   http_method             = aws_api_gateway_method.ollama_proxy_method.http_method
   integration_http_method = "ANY"
   type                    = "HTTP_PROXY"
+  connection_type         = "VPC_LINK"
+  connection_id           = aws_api_gateway_vpc_link.ollama_vpc_link.id
   uri                     = "http://${data.aws_lb.rand_lb.dns_name}/{proxy}"
 
   request_parameters = {
@@ -53,6 +62,8 @@ resource "aws_api_gateway_integration" "health_integration" {
   http_method             = aws_api_gateway_method.health_method.http_method
   integration_http_method = "GET"
   type                    = "HTTP_PROXY"
+  connection_type         = "VPC_LINK"
+  connection_id           = aws_api_gateway_vpc_link.ollama_vpc_link.id
   uri                     = "http://${data.aws_lb.rand_lb.dns_name}/api/tags"
 }
 
