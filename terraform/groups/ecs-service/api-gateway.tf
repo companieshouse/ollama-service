@@ -32,7 +32,7 @@ resource "aws_api_gateway_integration" "ollama_integration" {
   http_method             = aws_api_gateway_method.ollama_proxy_method.http_method
   integration_http_method = "ANY"
   type                    = "HTTP_PROXY"
-  uri                     = "http://${data.aws_lb.rand_lb.dns_name}/ollama-service/{proxy}"
+  uri                     = "http://${data.aws_lb.rand_lb.dns_name}/{proxy}"
 
   request_parameters = {
     "integration.request.path.proxy" = "method.request.path.proxy"
@@ -53,7 +53,7 @@ resource "aws_api_gateway_integration" "health_integration" {
   http_method             = aws_api_gateway_method.health_method.http_method
   integration_http_method = "GET"
   type                    = "HTTP_PROXY"
-  uri                     = "http://${data.aws_lb.rand_lb.dns_name}/ollama-service/api/tags"
+  uri                     = "http://${data.aws_lb.rand_lb.dns_name}/api/tags"
 }
 
 resource "aws_api_gateway_deployment" "ollama_deployment" {
