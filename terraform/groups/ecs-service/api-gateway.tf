@@ -32,7 +32,7 @@ resource "aws_api_gateway_integration" "ollama_integration" {
   http_method             = aws_api_gateway_method.ollama_proxy_method.http_method
   integration_http_method = "ANY"
   type                    = "HTTP_PROXY"
-  uri                     = "http://${data.aws_lb.rand_lb.dns_name}/ollama-service/{proxy}"
+  uri                     = "http://${data.aws_lb.rand_lb.dns_name}/{proxy}"
 
   request_parameters = {
     "integration.request.path.proxy" = "method.request.path.proxy"
@@ -53,7 +53,7 @@ resource "aws_api_gateway_integration" "health_integration" {
   http_method             = aws_api_gateway_method.health_method.http_method
   integration_http_method = "GET"
   type                    = "HTTP_PROXY"
-  uri                     = "http://${data.aws_lb.rand_lb.dns_name}/ollama-service/"
+  uri                     = "http://${data.aws_lb.rand_lb.dns_name}/api/tags"
 }
 
 resource "aws_api_gateway_deployment" "ollama_deployment" {
@@ -75,11 +75,6 @@ resource "aws_api_gateway_stage" "ollama_stage" {
   rest_api_id   = aws_api_gateway_rest_api.ollama_api.id
   stage_name    = var.environment
 }
-
-# # Add data source for ALB
-# data "aws_lb" "rand_lb" {
-#   name = local.lb_name
-# }
 
 output "api_gateway_url" {
   value       = "${aws_api_gateway_stage.ollama_stage.invoke_url}/ollama-service"
