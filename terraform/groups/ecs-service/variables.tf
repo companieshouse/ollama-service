@@ -53,7 +53,6 @@ variable "required_memory" {
   default     = 4096 # minimum recommended for running Ollama models
 }
 
-/
 variable "max_task_count" {
   type        = number
   description = "The maximum number of tasks for this service."
