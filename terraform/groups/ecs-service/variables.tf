@@ -40,7 +40,7 @@ variable "docker_registry" {
 variable "desired_task_count" {
   type        = number
   description = "The desired ECS task count for this service"
-  default     = 0 # TODO Revert this to 1 in order to resume service, defaulted low for dev environments, override for production
+  default     = 1 # TODO Revert this to 1 in order to resume service, defaulted low for dev environments, override for production
 }
 variable "required_cpus" {
   type        = number
@@ -56,7 +56,7 @@ variable "required_memory" {
 variable "max_task_count" {
   type        = number
   description = "The maximum number of tasks for this service."
-  default     = 0 # TODO Revert this to 3 in order to resume service
+  default     = 3 # TODO Revert this to 3 in order to resume service
 }
 
 variable "use_fargate" {

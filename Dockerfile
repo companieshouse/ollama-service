@@ -13,10 +13,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf 
 
 # Start Ollama server in background, pull the Llama model, then stop the server
 # Using full path to ollama binary to avoid command not found errors
-RUN nohup sh -c "/usr/bin/ollama serve &" && \
-    sleep 10 && \
-    /usr/bin/ollama pull llama3.2:3b && \
-    pkill -f "ollama"
+#RUN nohup sh -c "/usr/bin/ollama serve &" && \
+#    sleep 10 && \
+#    /usr/bin/ollama pull llama3.2:3b && \
+#    pkill -f "ollama"
+
+# Copy entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Perform healthcheck from container's namespace rather than here \
 # Health check to ensure container is running properly
@@ -29,3 +33,6 @@ EXPOSE 11434
 # Use the default entrypoint from the ollama image with the serve command
 # Using full path to ollama binary
 #CMD ["/usr/bin/ollama", "serve"]
+
+# Use custom entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
