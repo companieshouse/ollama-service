@@ -54,14 +54,20 @@ variable "required_memory" {
 }
 
 variable "mount_points" {
-  type        = list(any)
+  type        = list(object({
+    sourceVolume  = string
+    containerPath = string
+    readOnly      = bool
+  }))
   description = "Used to define mount points in the container definition"
   default     = [{ "sourceVolume" : "ollama-data", "containerPath" : "/data", "readOnly" : false }]
 }
 
 variable "volumes" {
   description = "Configuration block for volumes that containers in your task may use"
-  type        = any
+  type        = list(object({
+    name = string
+  }))
   default     = [{ "name" : "ollama-data" }]
 }
 
