@@ -1,11 +1,11 @@
 FROM ollama/ollama:0.1.27
 
 # Create a non-root user and writable directory for Ollama data
-RUN mkdir -p /data/ollama && chmod 777 /data/ollama
+RUN mkdir -p /tmp/ollama && chmod 777 /tmp/ollama
 
 # Set environment variable to use the writable directory
-ENV OLLAMA_MODELS=/data/ollama
-ENV HOME=/data
+ENV OLLAMA_MODELS=/tmp/ollama
+ENV HOME=/tmp
 ENV OLLAMA_HOST=0.0.0.0
 
 # Install curl for healthcheck

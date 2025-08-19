@@ -60,7 +60,7 @@ variable "mount_points" {
     readOnly      = bool
   }))
   description = "Used to define mount points in the container definition"
-  default     = [{ "sourceVolume" : "ollama-data", "containerPath" : "/data", "readOnly" : false }]
+  default     = [{ "sourceVolume" : "ollama-data", "containerPath" : "/tmp", "readOnly" : false }]
 }
 
 variable "volumes" {
