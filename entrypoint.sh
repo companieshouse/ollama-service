@@ -7,9 +7,7 @@
 sleep 10
 
 # Pull the model
-/usr/bin/ollama pull llama3.2:3b
-
-if [ $? -ne 0 ]; then
+if ! /usr/bin/ollama pull llama3.2:3b; then
   echo "Model pull failed"
   exit 1
 fi
