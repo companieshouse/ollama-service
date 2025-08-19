@@ -88,6 +88,8 @@ module "ecs-service" {
   max_task_count                     = var.max_task_count
   required_cpus                      = var.required_cpus
   required_memory                    = var.required_memory
+  mount_points                       = var.mount_points
+  volumes                            = var.volumes
   service_autoscale_enabled          = var.service_autoscale_enabled
   service_autoscale_target_value_cpu = var.service_autoscale_target_value_cpu
   service_scaledown_schedule         = var.service_scaledown_schedule

@@ -53,6 +53,18 @@ variable "required_memory" {
   default     = 4096 # minimum recommended for running Ollama models
 }
 
+variable "mount_points" {
+  type        = list(any)
+  description = "Used to define mount points in the container definition"
+  default     = [{ "sourceVolume" : "ollama-data", "containerPath" : "/data", "readOnly" : false }]
+}
+
+variable "volumes" {
+  description = "Configuration block for volumes that containers in your task may use"
+  type        = any
+  default     = [{ "name" : "ollama-data" }]
+}
+
 variable "max_task_count" {
   type        = number
   description = "The maximum number of tasks for this service."
