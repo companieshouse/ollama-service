@@ -11,6 +11,7 @@ sleep 10
 
 # Stop background server
 pkill -f "ollama"
+sleep 2
 
 # Start Ollama normally
 exec /usr/bin/ollama serve
