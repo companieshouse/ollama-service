@@ -7,6 +7,7 @@ RUN mkdir -p /tmp/ollama && chmod 777 /tmp/ollama
 ENV OLLAMA_MODELS=/tmp/ollama
 ENV HOME=/tmp
 ENV OLLAMA_HOST=0.0.0.0
+ENV OLLAMA_KV_CACHE_TYPE=q8_0
 
 # Install curl for healthcheck
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
