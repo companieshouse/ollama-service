@@ -2,6 +2,9 @@ FROM ollama/ollama:0.1.27
 
 # Create a non-root user and writable directory for Ollama data
 RUN mkdir -p /tmp/ollama && chmod 777 /tmp/ollama
+RUN mkdir -p /tmp/ollama/blobs && chmod 777 /tmp/ollama/blobs
+RUN mkdir -p /tmp/ollama/cpu_avx2 && chmod 777 /tmp/ollama/cpu_avx2
+
 
 # Set environment variable to use the writable directory
 ENV OLLAMA_MODELS=/tmp/ollama
@@ -9,6 +12,9 @@ ENV HOME=/tmp
 ENV OLLAMA_HOST=0.0.0.0
 ENV OLLAMA_KV_CACHE_TYPE=q8_0
 ENV OLLAMA_FLASH_ATTENTION=1
+ENV OLLAMA_LLM_LIBRARY=cpu_avx2
+ENV OLLAMA_CTX=2048
+ENV OLLAMA_DEBUG=1
 
 # Install curl for healthcheck
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
