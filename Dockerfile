@@ -1,4 +1,4 @@
-FROM ollama/ollama:0.1.27
+FROM ollama/ollama:0.11.6-rc0
 
 # Create a non-root user and writable directory for Ollama data
 RUN mkdir -p /tmp/ollama && chmod 777 /tmp/ollama
