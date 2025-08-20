@@ -45,12 +45,12 @@ variable "desired_task_count" {
 variable "required_cpus" {
   type        = number
   description = "The required cpu resource for this service. 1024 here is 1 vCPU"
-  default     = 1024 # minimum recommended for running Ollama models
+  default     = 2048 # 1024 is the minimum recommended for running Ollama models
 }
 variable "required_memory" {
   type        = number
   description = "The required memory for this service"
-  default     = 4096 # minimum recommended for running Ollama models
+  default     = 6144 # 4096 is the minimum recommended for running Ollama models
 }
 
 variable "mount_points" {
