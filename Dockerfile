@@ -16,6 +16,14 @@ ENV OLLAMA_LLM_LIBRARY=cpu_avx2
 ENV OLLAMA_CTX=2048
 ENV OLLAMA_DEBUG=1
 
+# 5-minute request timeout
+ENV OLLAMA_REQUEST_TIMEOUT=300s
+# Model loading timeout
+ENV OLLAMA_LOAD_TIMEOUT=300s
+# Keep model in memory longer
+ENV OLLAMA_KEEP_ALIVE=10m
+
+
 # Install curl for healthcheck
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
 
