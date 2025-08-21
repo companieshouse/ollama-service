@@ -50,7 +50,7 @@ variable "required_cpus" {
 variable "required_memory" {
   type        = number
   description = "The required memory for this service"
-  default     = 4096 # 4096 is the minimum recommended for running Ollama models, works well with 6144
+  default     = 6144 # 4096 is the minimum recommended for running Ollama models, works well with 6144
 }
 
 variable "mount_points" {
