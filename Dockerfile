@@ -2,8 +2,8 @@ FROM ollama/ollama:0.11.5
 
 # Create a non-root user and writable directory for Ollama data
 RUN mkdir -p /tmp/ollama && chmod 777 /tmp/ollama
-RUN mkdir -p /tmp/ollama/blobs && chmod 777 /tmp/ollama/blobs
-RUN mkdir -p /tmp/ollama/cpu_avx2 && chmod 777 /tmp/ollama/cpu_avx2
+#RUN mkdir -p /tmp/ollama/blobs && chmod 777 /tmp/ollama/blobs
+#RUN mkdir -p /tmp/ollama/cpu_avx2 && chmod 777 /tmp/ollama/cpu_avx2
 
 
 # Set environment variable to use the writable directory
@@ -14,7 +14,7 @@ ENV OLLAMA_KV_CACHE_TYPE=q8_0
 ENV OLLAMA_FLASH_ATTENTION=1
 ENV OLLAMA_LLM_LIBRARY=cpu_avx2
 ENV OLLAMA_CTX=4096
-ENV OLLAMA_DEBUG=1
+ENV OLLAMA_MAX_LOADED_MODELS=3
 
 # 5-minute request timeout
 ENV OLLAMA_REQUEST_TIMEOUT=300s
@@ -24,6 +24,8 @@ ENV OLLAMA_LOAD_TIMEOUT=300s
 ENV OLLAMA_KEEP_ALIVE=10m
 ENV OLLAMA_MAX_QUEUE=2048
 ENV OLLAMA_NUM_PARALLEL=4
+ENV OLLAMA_MAX_VRAM=8000000000
+ENV OLLAMA_DEBUG=1
 
 
 # Install curl for healthcheck
