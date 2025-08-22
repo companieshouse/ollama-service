@@ -2,9 +2,6 @@ FROM ollama/ollama:0.11.5
 
 # Create a non-root user and writable directory for Ollama data
 RUN mkdir -p /tmp/ollama && chmod 777 /tmp/ollama
-#RUN mkdir -p /tmp/ollama/blobs && chmod 777 /tmp/ollama/blobs
-#RUN mkdir -p /tmp/ollama/cpu_avx2 && chmod 777 /tmp/ollama/cpu_avx2
-
 
 # Set environment variable to use the writable directory
 ENV OLLAMA_MODELS=/tmp/ollama
@@ -15,7 +12,6 @@ ENV OLLAMA_FLASH_ATTENTION=1
 ENV OLLAMA_LLM_LIBRARY=cpu_avx2
 ENV OLLAMA_CTX=4096
 ENV OLLAMA_MAX_LOADED_MODELS=3
-
 # 5-minute request timeout
 ENV OLLAMA_REQUEST_TIMEOUT=300s
 # Model loading timeout
@@ -27,16 +23,8 @@ ENV OLLAMA_NUM_PARALLEL=4
 ENV OLLAMA_MAX_VRAM=8000000000
 ENV OLLAMA_DEBUG=1
 
-
 # Install curl for healthcheck
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
-
-# Start Ollama server in background, pull the Llama model, then stop the server
-# Using full path to ollama binary to avoid command not found errors
-#RUN nohup sh -c "/usr/bin/ollama serve &" && \
-#    sleep 10 && \
-#    /usr/bin/ollama pull llama3.2:3b && \
-#    pkill -f "ollama"
 
 # Copy entrypoint script
 COPY entrypoint.sh /entrypoint.sh
@@ -45,7 +33,7 @@ RUN chmod +x /entrypoint.sh
 # Perform healthcheck from container's namespace rather than here \
 # Health check to ensure container is running properly
 #HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-#  CMD curl -f http://localhost:11434/api/health || exit 1
+#  CMD curl -f http://localhost:11434/api/version || exit 1
 
 # Expose the Ollama API port
 EXPOSE 11434
