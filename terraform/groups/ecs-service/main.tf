@@ -117,7 +117,7 @@ resource "aws_security_group" "ecs_sg" {
 }
 
 resource "aws_lb_target_group" "ollama_target_group" {
-  name     = "ollama-target-group"
+  name     = "${local.service_name}-${var.environment}-target-group"
   port     = 11434
   protocol = "HTTP"
   vpc_id   = data.aws_vpc.vpc.id
