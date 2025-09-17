@@ -10,6 +10,7 @@ ENV OLLAMA_HOST=0.0.0.0
 ENV OLLAMA_KV_CACHE_TYPE=q8_0
 ENV OLLAMA_FLASH_ATTENTION=1
 ENV OLLAMA_LLM_LIBRARY=cpu_avx2
+# Max context length (8192 for Llama 3.2 3B) - but use 12288 to allow for larger models
 ENV OLLAMA_CTX=12288
 ENV OLLAMA_MAX_LOADED_MODELS=3
 # 5-minute request timeout
