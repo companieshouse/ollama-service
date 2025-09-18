@@ -7,7 +7,8 @@ RUN mkdir -p /tmp/ollama && chmod 777 /tmp/ollama
 ENV OLLAMA_MODELS=/tmp/ollama
 ENV HOME=/tmp
 ENV OLLAMA_HOST=0.0.0.0
-ENV OLLAMA_KV_CACHE_TYPE=q8_0
+#ENV OLLAMA_KV_CACHE_TYPE=q8_0
+ENV OLLAMA_KV_CACHE_TYPE=q4_K_M
 ENV OLLAMA_FLASH_ATTENTION=1
 ENV OLLAMA_LLM_LIBRARY=cpu_avx2
 # Max context length (8192 for Llama 3.2 3B) - but use 12288 to allow for larger models
