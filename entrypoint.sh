@@ -11,7 +11,7 @@ sleep 10
 #if ! /usr/bin/ollama pull llama3.2:3b; then
 #if ! /usr/bin/ollama pull llama3.3:70b; then
 #if ! /usr/bin/ollama pull llama3.1:8b; then
-if ! /usr/bin/ollama pull OLMoE:7b; then
+if ! /usr/bin/ollama pull sam860/olmoe-1b-7b-0924; then
   echo "Model pull failed"
   exit 1
 fi
