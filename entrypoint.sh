@@ -10,7 +10,8 @@ sleep 10
 #if ! /usr/bin/ollama pull mistral:7b-instruct; then
 #if ! /usr/bin/ollama pull llama3.2:3b; then
 #if ! /usr/bin/ollama pull llama3.3:70b; then
-if ! /usr/bin/ollama pull llama3.1:8b; then
+#if ! /usr/bin/ollama pull llama3.1:8b; then
+if ! /usr/bin/ollama pull OLMoE:7b; then
   echo "Model pull failed"
   exit 1
 fi
