@@ -6,7 +6,7 @@ RUN mkdir -p /tmp/ollama && chmod 777 /tmp/ollama
 # Set environment variable to use the writable directory
 ENV OLLAMA_MODELS=/tmp/ollama
 ENV HOME=/tmp
-ENV OLLAMA_HOST=0.0.0.0
+ENV OLLAMA_HOST=0.0.0.0:11434
 #ENV OLLAMA_KV_CACHE_TYPE=q8_0
 ENV OLLAMA_KV_CACHE_TYPE=q4_K_M
 ENV OLLAMA_FLASH_ATTENTION=1
