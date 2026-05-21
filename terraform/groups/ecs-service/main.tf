@@ -144,7 +144,7 @@ resource "aws_lb_listener_rule" "ollama_rule" {
 
   condition {
     path_pattern {
-      values = ["/ollama-service","/ollama-service/*"]
+      values = local.lb_listener_paths
     }
   }
 }
