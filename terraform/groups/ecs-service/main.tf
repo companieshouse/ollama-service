@@ -125,7 +125,7 @@ resource "aws_lb_target_group" "ollama_target_group" {
   health_check {
     path                = local.healthcheck_path
     protocol            = "HTTP"
-    matcher             = "200"
+    matcher             = local.healthcheck_matcher
     interval            = 30
     timeout             = 5
     healthy_threshold   = 2
