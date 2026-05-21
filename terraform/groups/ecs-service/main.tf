@@ -123,9 +123,9 @@ resource "aws_lb_target_group" "ollama_target_group" {
   vpc_id   = data.aws_vpc.vpc.id
 
   health_check {
-    path                = "/"
+    path                = local.healthcheck_path
     protocol            = "HTTP"
-    matcher             = "200"
+    matcher             = local.healthcheck_matcher
     interval            = 30
     timeout             = 5
     healthy_threshold   = 2
@@ -144,7 +144,7 @@ resource "aws_lb_listener_rule" "ollama_rule" {
 
   condition {
     path_pattern {
-      values = ["/ollama-service/*"]
+      values = local.lb_listener_paths
     }
   }
 }
